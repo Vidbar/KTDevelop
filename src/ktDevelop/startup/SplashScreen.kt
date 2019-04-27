@@ -1,4 +1,4 @@
-package KTDevelop.Startup
+package ktDevelop.startup
 
 val requestedFileList = mutableListOf<String>()
 val parameterList = mutableListOf<String>()

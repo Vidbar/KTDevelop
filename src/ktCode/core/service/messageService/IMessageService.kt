@@ -1,0 +1,3 @@
+package ktCode.core.service.messageService
+
+interface IMessageService
