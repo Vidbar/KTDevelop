@@ -3,16 +3,15 @@ package ktCode.ktDevelop.util
 import dotNet.IServiceProvider
 
 class KTDevelopServiceContainer : IServiceProvider {
+    override fun <T> getService(serviceType: String): T {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private val fallbackProviders = mutableListOf<IServiceProvider>()
     private val services = mutableMapOf<String, Any>()
 
     fun addFallbackProvider(provider: IServiceProvider) {
         fallbackProviders.add(provider)
-    }
-
-    override fun getService(serviceType: Any): Any {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun addService(serviceType: String, serviceInstance: Any) {

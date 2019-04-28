@@ -23,5 +23,7 @@ fun loadAddIn(addInTree: IAddInTree, textReader: InputStreamReader, path: String
 }
 
 class AddIn(addInTree: IAddInTree) {
+    lateinit var manifest: AddInManifest
+    var enabled = false
     lateinit var addInFileName: String
 }

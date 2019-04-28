@@ -6,5 +6,5 @@ class FallbackServiceProvider : IServiceProvider {
 
     private val fallbackServiceDictionary = mutableMapOf<String, Any>()
 
-    override fun getService(serviceType: String): Any = fallbackServiceDictionary[serviceType]!!
+    override fun <T> getService(serviceType: String): T = (fallbackServiceDictionary[serviceType] as T?)!!
 }

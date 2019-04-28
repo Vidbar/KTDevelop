@@ -1,3 +1,5 @@
 package ktCode.core.services.messageService
 
-interface IMessageService
+interface IMessageService {
+    fun showError(message: String)
+}

@@ -7,7 +7,7 @@ import ktCode.core.services.propertyService.PropertyServiceImpl
 import ktCode.core.services.propertyService.loadProperties
 import java.io.File
 
-class PropertyService(val configDirectory: DirectoryName, val dataDirectory: DirectoryName, propertiesName: String):
+class PropertyService(val configDirectory: DirectoryName, override val dataDirectory: DirectoryName, propertiesName: String):
     PropertyServiceImpl(loadPropertiesFromStream(configDirectory.combineFile("$propertiesName.xml")))
 {
     val propertiesFileName: FileName = configDirectory.combineFile("$propertiesName.xml")

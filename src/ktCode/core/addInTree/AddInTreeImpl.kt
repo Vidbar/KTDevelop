@@ -4,6 +4,7 @@ import dotNet.Version
 import ktCode.core.addInTree.addIn.AddIn
 import ktCode.core.addInTree.addIn.LoadAddIn
 import ktCode.core.services.ApplicationStateInfoService
+import ktCode.core.services.messageService.showError
 
 class AddInTreeImpl(applicationStateInfoService: ApplicationStateInfoService) : IAddInTree {
     /*
@@ -21,11 +22,30 @@ class AddInTreeImpl(applicationStateInfoService: ApplicationStateInfoService) : 
 
         for (fileName in addInFiles){
             var addIn =
-                return try {
+                try {
                     LoadAddIn(this, fileName, "nameTable")
                 }catch (exception: Exception){
-                    AddIn(this)
+                    AddIn(this).apply {
+                        addInFileName = fileName
+                    }
                 }
+
+            addIn.enabled = true
+            if (disableAddIns.any()){
+                for (name in addIn.manifest.identities.keys){
+                    if (disableAddIns.contains(name)){
+                        addIn.enabled = false
+                        break
+                    }
+                }
+            }
+            if(addIn.enabled){
+                for (pair in addIn.manifest.identities){
+                    if (dict.containsKey(pair.key)){
+                        showError("""Name '${pair.key}' is used by '${addInDict[pair.key]?.addInFileName}' and '$fileName'""")
+                    }
+                }
+            }
         }
     }
 }
