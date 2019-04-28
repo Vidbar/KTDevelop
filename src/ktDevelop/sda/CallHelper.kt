@@ -1,12 +1,16 @@
 package ktDevelop.sda
 
 import ktCode.core.addInTree.CoreStartup
-import ktCode.core.service.fallbackServiceProvider
-import ktCode.core.service.loggingService.ILoggingService
-import ktCode.core.service.messageService.IMessageService
+import ktCode.core.services.fallbackServiceProvider
+import ktCode.core.services.fileUtility.applicationRootPath
+import ktCode.core.services.fileUtility.createDirectoryName
+import ktCode.core.services.loggingService.ILoggingService
+import ktCode.core.services.messageService.IMessageService
 import ktCode.ktDevelop.util.KTDevelopServiceContainer
+import ktDevelop.services.PropertyService
 import ktDevelop.logging.Log4netLoggingService
 import ktDevelop.logging.SDMessageService
+import ktDevelop.startup.pathCombine
 
 class CallHelper {
     private lateinit var callback: CallbackHelper
@@ -22,7 +26,16 @@ class CallHelper {
         this.callback = callback
         val startup = CoreStartup(properties.applicationName)
         val configDirectory = properties.configDirectory
-        val dataDirectory = properties.dataDirectory
+        val dataDirectory: String? = properties.dataDirectory
         val propertiesName = properties.applicationName + "Properties"
+
+        applicationRootPath = properties.applicationRootPath
+        val propertyService = PropertyService(
+            createDirectoryName(configDirectory),
+            createDirectoryName(dataDirectory ?: pathCombine(applicationRootPath, "data")),
+            propertiesName
+        )
     }
+
+
 }

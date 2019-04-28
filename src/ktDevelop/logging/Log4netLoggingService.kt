@@ -1,6 +1,6 @@
 package ktDevelop.logging
 
-import ktCode.core.service.loggingService.ILoggingService
+import ktCode.core.services.loggingService.ILoggingService
 
 class Log4netLoggingService : ILoggingService {
 

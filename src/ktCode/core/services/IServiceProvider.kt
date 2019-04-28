@@ -1,4 +1,4 @@
-package ktCode.core.service
+package ktCode.core.services
 
 interface IServiceProvider {
     fun getService(serviceType: Any): Any

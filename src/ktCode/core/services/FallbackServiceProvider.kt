@@ -1,4 +1,4 @@
-package ktCode.core.service
+package ktCode.core.services
 
 class FallbackServiceProvider : IServiceProvider {
 
