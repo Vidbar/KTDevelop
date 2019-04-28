@@ -1,6 +1,7 @@
 package ktDevelop.sda
 
 class StartupSettings {
+    val addInFiles = mutableListOf<String>()
     val dataDirectory = ""
     val applicationName = "KTDevelop"
     var domPersistencePath: String = ""
@@ -8,7 +9,7 @@ class StartupSettings {
     var allowUserAddIns: Boolean = false
     var applicationRootPath: String = ""
 
-    private val addInDirectories = mutableListOf<String>()
+    val addInDirectories = mutableListOf<String>()
 
     fun addAddInsFromDirectory(addInDir: String) {
         addInDirectories.add(addInDir)

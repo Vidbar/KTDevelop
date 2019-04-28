@@ -1,5 +1,5 @@
 package ktCode.core.services.propertyService
 
-open class PropertyServiceImpl(val properties: Properties) {
+open class PropertyServiceImpl(val properties: Properties) : IPropertyService {
 
 }

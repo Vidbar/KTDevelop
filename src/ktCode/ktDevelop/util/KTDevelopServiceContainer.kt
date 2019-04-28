@@ -1,6 +1,6 @@
 package ktCode.ktDevelop.util
 
-import ktCode.core.services.IServiceProvider
+import dotNet.IServiceProvider
 
 class KTDevelopServiceContainer : IServiceProvider {
 

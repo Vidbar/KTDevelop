@@ -1,4 +1,9 @@
 package ktCode.core.services
 
-var fallbackServiceProvider: IServiceProvider = FallbackServiceProvider()
+import dotNet.IServiceProvider
+import dotNet.typeOf
+
+var serviceProvider: IServiceProvider = FallbackServiceProvider()
+
+inline fun <reified T> getRequiredService(): T = serviceProvider.getService(typeOf(T::class))
 
