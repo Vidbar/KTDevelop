@@ -1,5 +1,6 @@
 package ktCode.core.addInTree
 
+import dotNet.ICommand
 import dotNet.IServiceContainer
 import dotNet.typeOf
 import ktCode.core.services.ApplicationStateInfoService
@@ -7,6 +8,7 @@ import ktCode.core.services.getRequiredService
 import ktCode.core.services.propertyService.IPropertyService
 import ktCode.core.services.resourceService.IResourceService
 import ktCode.core.services.resourceService.ResourceServiceImpl
+import ktCode.core.services.serviceProvider
 import ktDevelop.startup.pathCombine
 import java.io.File
 
@@ -43,6 +45,17 @@ class CoreStartup(val applicationName: String) {
 
     fun runInitialization() {
         addInTree.load(addInFiles, disableAddIns)
+
+        val container = serviceProvider.getService<IServiceContainer>(typeOf(IServiceContainer::class))
+
+        //TODO LoggingService.Info("Running autostart commands...");
+        for (command in addInTree.buildItems<ICommand>("/KTDevelop/Autostart", null, false)){
+            try {
+                command.execute(null)
+            }catch (ex: Exception){
+                //ServiceSingleton.GetRequiredService<IMessageService>().ShowException(ex);
+            }
+        }
     }
 
 }

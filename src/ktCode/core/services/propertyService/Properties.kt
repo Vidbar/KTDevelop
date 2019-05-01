@@ -7,5 +7,8 @@ fun loadProperties(fileName: FileName): Properties {
 }
 
 class Properties {
+    private val dict = mutableMapOf<String, String>()
+
+    operator fun get(key: String): String = dict[key] ?: ""
 
 }
